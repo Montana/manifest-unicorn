@@ -1,2 +1,2 @@
-# manifest-unicorn
-Manifest information for the IBM Unicorn page
+## Core information for the IBM Unicorn Landing Page 
+
