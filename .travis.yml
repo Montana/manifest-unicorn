@@ -1,8 +1,8 @@
 ---
-- language: shell
-  sudo: required
-  dist: xenial
-  os: linux
+language: shell
+sudo: required
+dist: xenial
+os: linux
 
 services:
   - docker
