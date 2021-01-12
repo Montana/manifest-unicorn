@@ -77,5 +77,5 @@ branches:
     # .travis.yml created by Montana Mendy for Travis CI & IBM
 ```
 
-Once you run this `.travis.yml` file, you can inspect the manifests, of `ppc64le` and `s390x`, along with multiarch builds.
+Once you trigger the `.travis.yml` file, you can inspect the manifests of `ppc64le` and `s390x`, along with multiarch builds. Within the build, we build a `charCount` I built in Python. 
 
