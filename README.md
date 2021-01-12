@@ -18,6 +18,10 @@ For some setting the `env vars` in the CLI is the best option, but for others us
 
 ![UI](envvarui.png)
 
+> We are using the UI to enter the Travis CI env vars (rather than the CLI).
+
+
+
 ### Your `.travis.yml` setup 
 
 ```yaml
@@ -73,4 +77,5 @@ branches:
     # .travis.yml created by Montana Mendy for Travis CI & IBM
 ```
 
+Once you run this `.travis.yml` file, you can inspect the manifests, of `ppc64le` and `s390x`, along with multiarch builds.
 
