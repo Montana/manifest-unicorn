@@ -1,8 +1,16 @@
 ---
-language: shell
-sudo: required
-dist: xenial
-os: linux
+matrix:
+  include:
+    - language: python
+      python: 2.7
+      script:
+        - python charcount.py
+
+
+- language: shell
+  sudo: required
+  dist: xenial
+  os: linux
 
 services:
   - docker
