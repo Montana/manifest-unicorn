@@ -1,5 +1,7 @@
 ## IBM Unicorn Landing Page
 
+![IBM](ibm.gif)
+
 ### Setting up your Docker Env Vars 
 
 You can use your GitHub auth token, or just username/password, once logged in set the `env vars`: 
