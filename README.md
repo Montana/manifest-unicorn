@@ -24,26 +24,10 @@ For some setting the `env vars` in the CLI is the best option, but for others us
 
 
 
-### Your `.travis.yml` setup 
+### Your `.travis.yml` setup (the most important parts) 
 
 ```yaml
 ---
-language: shell
-sudo: required
-dist: xenial
-os: linux
-
-services:
-  - docker
-
-addons:
-  apt:
-    packages:
-      - docker-ce
-
-env:
-  - DEPLOY=false repo=lucashalbert/curl docker_archs="amd64 ppc64le s390x"
-
 install:
   - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
@@ -57,17 +41,16 @@ before_script:
 script:
   - chmod u+x ./travis.sh
   - export DOCKER_CLI_EXPERIMENTAL=enabled
+  - chmod u+x ./build.sh
 
 after_success:
   - docker images
-  - docker manifest inspect --verbose lucashalbert/curl # multiarch build
-  - docker manifest inspect --insecure lucashalbert/curl # multiarch build 
-  - docker manifest inspect --verbose ppc64le/node # IBM power build 
-  - docker manifest inspect --insecure ppc64le/node # IBM power build 
-  - docker manifest inspect --verbose s390x/python # IBM Z build 
-  - docker manifest inspect --insecure s390x/python # IBM z build
-  - docker manifest inspect --verbose ibmjava:jre # official Docker IBM Java (Multiarch) build
-  - docker manifest inspect --insecure ibmjava:jre # official Docker IBM Java (Multiarch) build
+  - docker manifest inspect --verbose ppc64le/node
+  - docker manifest inspect --insecure ppc64le/node
+  - docker manifest inspect --verbose s390x/python
+  - docker manifest inspect --insecure s390x/python
+  - docker manifest inspect --verbose ibmjava:jre
+  - docker manifest inspect --insecure ibmjava:jre
 
 branches:
   only:
@@ -75,8 +58,6 @@ branches:
   except:
     - /^*-v[0-9]/
     - /^v\d.*$/
-    
-    # .travis.yml created by Montana Mendy for Travis CI & IBM
 ```
 
 Once you trigger the `.travis.yml` file, you can inspect the manifests of `ppc64le` and `s390x`, along with multiarch builds. Within the build, we build a `charCount` I built in Python. 
