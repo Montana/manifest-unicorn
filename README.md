@@ -60,5 +60,17 @@ branches:
     - /^v\d.*$/
 ```
 
-Once you trigger the `.travis.yml` file, you can inspect the manifests of `ppc64le` and `s390x`, along with multiarch builds. Within the build, we build a `charCount` I built in Python. 
+Once we've created our `env vars`  `DOCKER_USERNAME` and `DOCKER_PASSWORD` you can add the login step and the --push option to the buildx command as follows.
+
+```yaml
+script:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker buildx create --use
+  - docker buildx build --push --platform
+linux/arm/v7,linux/arm64/v8,linux/amd64 --tag
+your-username/multiarch-example:buildx-latest .
+```
+You can now create a multi arch image each time you make a change in your codebase.
+
+
 
