@@ -1,3 +1,5 @@
+![Manifest](manifest.gif)
+
 ## Intro:
 
 The Docker container `manifest` is a file that contains data about a container image. Specifically `digest`, `sha256`, etc. We can create a `manifest` which points to images for different architectures so that when using the image on a particular architecture the docker automatically pulls the desired image.
@@ -17,10 +19,6 @@ You'll want to enable Docker experimental CLI features in Travis as well:
 echo '{"experimental":"enabled"}' >> ~/.docker/config.json
 ```
 Then you're ready to go. 
-
-## IBM Unicorn Landing Page:
-
-![IBM](ibm.gif)
 
 ### Setting up your Docker Env Vars:
 
