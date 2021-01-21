@@ -1,15 +1,29 @@
-## IBM Unicorn Landing Page
+## Intro:
+
+The Docker container `manifest` is a file that contains data about a container image. Specifically `digest`, `sha256`, etc. We can create a `manifest` which points to images for different architectures so that when using the image on a particular architecture the docker automatically pulls the desired image.
+
+Creating a ```manifest``` is an experimental CLI feature and you should update docker for good measure. Add following lines to .travis.yml:
+
+```yaml
+addons:
+  apt:
+    packages:
+      - docker-ce
+```
+
+You'll want to enable Docker experimental CLI features in Travis as well: 
+
+```yaml
+echo '{"experimental":"enabled"}' >> ~/.docker/config.json
+```
+Then you're ready to go. 
+
+## IBM Unicorn Landing Page:
 
 ![IBM](ibm.gif)
 
-### Setting up your Docker Env Vars 
+### Setting up your Docker Env Vars:
 
-You can use your GitHub auth token, or just username/password, once logged in set the `env vars`: 
-
-```bash
-travis env set DOCKER_USERNAME username
-travis env set DOCKER_PASSWORD pwd
-```
 You should see this in your build at some point, this is reassurance your `env vars` got saved.
 
 ![envvars](dockervars.png)
@@ -22,9 +36,7 @@ For some setting the `env vars` in the CLI is the best option, but for others us
 
 > We are using the UI to enter the Travis CI env vars (rather than the CLI).
 
-
-
-### Your `.travis.yml` setup (the most important parts) 
+### Your `.travis.yml` setup (the most important parts): 
 
 ```yaml
 ---
@@ -60,17 +72,8 @@ branches:
     - /^v\d.*$/
 ```
 
-Once we've created our `env vars`  `DOCKER_USERNAME` and `DOCKER_PASSWORD` you can add the login step and the --push option to the buildx command as follows.
+Once we've created our `env vars`  `DOCKER_USERNAME` and `DOCKER_PASSWORD` you can start using `docker manifest`. 
 
-```yaml
-script:
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker buildx create --use
-  - docker buildx build --push --platform
-linux/arm/v7,linux/arm64/v8,linux/amd64 --tag
-your-username/multiarch-example:buildx-latest .
-```
-You can now create a multi arch image each time you make a change in your codebase.
 
 
 
