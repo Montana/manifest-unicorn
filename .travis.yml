@@ -31,7 +31,7 @@ script:
 
 after_success:
   - docker images
-  - docker manifest inspect --verbose lucashalbert/curl docker_archs="amd64 ppc64le s390x" # multi arch build
+  - docker manifest inspect --verbose lucashalbert/curl # multi arch build
   - docker manifest inspect --verbose ibmjava:jre # official Docker IBM Java (Multi arch) build
   - docker manifest inspect --insecure ibmjava:jre # official Docker IBM Java (Multi arch) build
 
