@@ -21,8 +21,8 @@ docker manifest create IBM/ibm-image:latest \
             IBM/ibm-image:latest-${PLATFORM_1} \ # arch s390x (one can assume)
             IBM/ibm-image:latest-${PLATFORM_2} \ # arch ppc64le (one can assume)
             
-docker manifest annotate someone/my-image:latest IBM/ibm-image:latest-${PLATFORM_1} --arch ${PLATFORM_1} # arch s390x (one can assume) 
-docker manifest annotate someone/my-image:latest IBM/ibm-image:latest-${PLATFORM_2} --arch ${PLATFORM_2} # arch ppc64le (one can assume)
+docker manifest annotate IBM/ibm-image:latest IBM/ibm-image:latest-${PLATFORM_1} --arch ${PLATFORM_1} # arch s390x (one can assume) 
+docker manifest annotate IBM/ibm-image:latest IBM/ibm-image:latest-${PLATFORM_2} --arch ${PLATFORM_2} # arch ppc64le (one can assume)
 
 docker manifest push IBM/ibm-image:latest
 ```
