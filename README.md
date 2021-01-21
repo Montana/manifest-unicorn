@@ -2,7 +2,7 @@
 
 ## Intro:
 
-The Docker container `manifest` is a file that contains data about a container image. Specifically `digest`, `sha256`, etc. We can create a `manifest` which points to images for different architectures so that when using the image on a particular architecture the docker automatically pulls the desired image. The reason for `manifest` is to mainly cross-build docker images.
+The Docker container `manifest` is a file that contains data about a container image. Specifically `digest`, `sha256`, etc. We can create a `manifest` which points to images for different architectures so that when using the image on a particular architecture Docker automatically pulls the desired image. The reason for `manifest` is to mainly cross-build docker images.
 
 Creating a ```manifest``` is an experimental CLI feature and you should update docker for good measure. Add following lines to .travis.yml:
 
@@ -81,7 +81,3 @@ branches:
 ```
 
 Once we've created our `env vars`  `DOCKER_USERNAME` and `DOCKER_PASSWORD` you can start using `docker manifest`. 
-
-
-
-
