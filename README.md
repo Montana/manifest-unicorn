@@ -32,12 +32,6 @@ Then you're ready to go.
 
 ### Setting up your Docker Env Vars:
 
-You should see this in your build at some point, this is reassurance your `env vars` got saved.
-
-![envvars](dockervars.png)
-
-> Travis CI confirming that our `env vars` are safe and secure while it builds. 
-
 For some setting the `env vars` in the CLI is the best option, but for others using the Travis CI user interface is easier, and quicker. Click Settings -> Environment Variables then add your `DOCKER` env vars. 
 
 ![UI](envvarui.png)
