@@ -12,12 +12,22 @@ addons:
     packages:
       - docker-ce
 ```
+Below is a sample of a `manifest` that's being automated:
 
-You'll want to enable Docker experimental CLI features in Travis as well: 
+```bash
+export DOCKER_CLI_EXPERIMENTAL=enabled # crucial for manifest to work 
 
-```yaml
-echo '{"experimental":"enabled"}' >> ~/.docker/config.json
+docker manifest create IBM/ibm-image:latest \
+            IBM/ibm-image:latest-${PLATFORM_1} \ # arch s390x 
+            IBM/ibm-image:latest-${PLATFORM_2} \ # arch ppc64le
+            
+docker manifest annotate someone/my-image:latest someone/my-image:latest-${PLATFORM_1} --arch ${PLATFORM_1}
+docker manifest annotate someone/my-image:latest someone/my-image:latest-${PLATFORM_2} --arch ${PLATFORM_2}
+
+docker manifest push IBM/ibm-image:latest
 ```
+> You've just read an automated creation and push of `manifests`. 
+
 Then you're ready to go. 
 
 ### Setting up your Docker Env Vars:
